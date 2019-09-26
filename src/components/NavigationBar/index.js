@@ -328,6 +328,10 @@ class NavigationBar extends Component {
 
   handleLanguageChange = (event, index, values) => {
     localStorage.setItem('languages', event.target.value);
+    let languages = [...event.target.value];
+    if (languages.length === 0) {
+      event.target.value.push('en');
+    }
     this.props.actions
       .setLanguageFilter({ languageValue: event.target.value })
       .then(() => {
